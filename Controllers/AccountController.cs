@@ -16,8 +16,10 @@ public class AccountController : ControllerBase
     private readonly SymmetricSecurityKey _securityKey;
     private readonly SigningCredentials _credentials;
     private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler;
+
     public AccountController()
-    {           
+    {          
+        // In a real implementation this code would be isolated in a Singleton service
         _securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AccountDetails.SecretKey));
 
         if (_securityKey.KeySize < SymmetricSignatureProvider.DefaultMinimumSymmetricKeySizeInBits)
@@ -52,17 +54,13 @@ public class AccountController : ControllerBase
     [Authorize]
     public string IsAllowed()
     {
-        return "success";
+        return "Success";
     }
 
-    private static string HashPassword(string password)
-    {
-        // derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
-        return Convert.ToBase64String(KeyDerivation.Pbkdf2(
+    private static string HashPassword(string password) => Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password: password,
             salt: AccountDetails.Salt,
             prf: KeyDerivationPrf.HMACSHA256,
             iterationCount: 100000,
             numBytesRequested: 256 / 8));
-    }
 }

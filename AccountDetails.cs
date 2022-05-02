@@ -1,5 +1,9 @@
 ﻿namespace BearerAuthApi;
 
+/// <summary>
+/// Hard coded account information. In a real project the <see cref="SecretKey"/>
+/// would be securely stored in a vault
+/// </summary>
 public static class AccountDetails
 {
     public const string Username = "bob";
