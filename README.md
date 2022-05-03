@@ -2,8 +2,8 @@
 
 ## !! WARNING !!
 
-This is an example project and as such any sensitive information should **not** be 
-reused "as is". In a real implementation any sensitive data (encryption key)
+This is an example project and contains many security bad practices. As such any sensitive 
+information should **not** be reused "as is". In a real implementation any sensitive data (encryption key)
 would be stored in a secure repository.
 
 ## Introduction
@@ -35,4 +35,17 @@ bot attack.
 ### The solution
 
 The solution to this problem is of course a 2nd authentication factor.
+
+## Other bad practices
+
+### Token APIs
+
+A simple API which accepts credentials and issues a security token is generally considered a bad practice.
+The use of a standard method such as OAuth with an appropriate flow is preferable. Indeed this project closely resembles
+the now deprecated [Resource owner password flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/resource-owner-password-flow)
+in OAuth. 
+
+### CORS
+
+Note that a wildcard CORS policy has been defined in the project which is again a bad practice.
 
