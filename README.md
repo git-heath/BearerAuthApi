@@ -24,7 +24,7 @@ Further documentation can be found in the Swagger when launching the project in 
 
 The [Polly](https://github.com/App-vNext/Polly) package is used in this project as an
 example of how one could implement a rudimentary rate limiting to avoid brute force
-attacks. An HTTP code of 429 (too many requests) is returned if the redefined rate is
+attacks. An HTTP code of 429 (too many requests) is returned if the predefined rate is
 exceeded (60 calls per minute). 
 
 One of the disadvantages of this type of protection is that a bad actor can 
